@@ -6,12 +6,11 @@ class AppContextProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuth: true,
+      isAuth: false,
       // revv account 
       access_token: "",
       subdomain:"",
       refresh_token:"",
-      org_id:"",
       // 
 
       // 
@@ -27,23 +26,33 @@ class AppContextProvider extends React.Component {
       all_done: false,
       //
       //
-      form_display: true
+      form_display: true,
       //
+
+      data_json: [],
+      data_csv:[]
     };
   }
 
-  authUser = async (email, password, event) => {
+  authUser = async (email, password, org, event) => {
     event.preventDefault();
-    await axios
-      .post("https://api.revvsales.com/api/v2/auth/initiate-auth", {
-        email: email,
-        password: password,
-      })
-      .then((res) => {
+    await axios({
+      method: 'post',     
+      url: "https://api.revvsales.com/api/v2/auth/initiate-auth",
+       headers: { 'Content-Type': 'application/json',
+          'GrantType' : 'password' }, 
+      data: {
+      "user_email": email,
+      "password": password,
+      "org_domain": org
+      }
+    }).then((res) => {
+      console.log(res.data)
         this.setState({
           isAuth: true,
-          id: email,
-          token: res.data.token,
+          access_token: res.data.access_token,
+          subdomain:res.data.subdomain,
+          refresh_token:res.data.refresh_token
         });
       })
       .catch((error) => alert(error));
@@ -124,6 +133,22 @@ class AppContextProvider extends React.Component {
     })
 }
 
+
+//
+automate = async(email,pass) => {
+  const response = await axios({
+    method: "post",
+    url: "http://localhost:5000/screenshot",
+    data: {
+      "email": email,
+      "password": pass,
+    },
+  })
+  console.log(response)
+}
+
+
+
   render() {
     let {
       isAuth,
@@ -147,6 +172,8 @@ class AppContextProvider extends React.Component {
       handleChange,
       selectMode,
       gotoDocumnetCreation,
+      automate,
+
       
     } = this;
     return (
@@ -171,6 +198,7 @@ class AppContextProvider extends React.Component {
           selectMode,
           gotoDocumnetCreation,
           resetData,
+          automate,
           
         }}
       >

@@ -27,7 +27,7 @@ class DashBoard extends React.Component {
             <hr />
             <button
               name="existingForm"
-              onClick={this.context.userSelect}
+              onClick={this.context.selectMode}
               className="btn btn-warning"
             >Generate Documents with Existing Data</button>
           </div>

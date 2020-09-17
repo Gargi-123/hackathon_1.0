@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios'
 import { AppContext } from "../context/ContextProvider";
 export default class Login extends React.Component {
   constructor(props) {
@@ -6,6 +7,7 @@ export default class Login extends React.Component {
     this.state = {
       email: "",
       password: "",
+      org_domain: "",
     };
   }
 
@@ -41,7 +43,14 @@ export default class Login extends React.Component {
             value={this.state.password}
             onChange={this.handleChange}
           />
-          <input type="button" value="SUBMIT" onClick={(e) => this.context.authUser(this.state.email,this.state.password,e)} />
+          <label>Org Domain:</label>
+          <input
+            name="org_domain"
+            type = "text"
+            value={this.state.org_domain}
+            onChange={this.handleChange}
+          />
+          <input type="button" value="SUBMIT"  onClick={(e) => this.context.authUser(this.state.email,this.state.password,this.state.org_domain,e)}/>
         </form>
       </div>
       </>
@@ -50,3 +59,5 @@ export default class Login extends React.Component {
 }
 
 Login.contextType = AppContext;
+
+// onClick={(e) => this.context.automate(this.state.email,this.state.password,e) }
