@@ -7,13 +7,28 @@ class AppContextProvider extends React.Component {
     super(props);
     this.state = {
       isAuth: true,
+      // revv account 
+      access_token: "",
+      subdomain:"",
+      refresh_token:"",
+      org_id:"",
+      // 
+
+      // 
+      state_type: null,
+      // 
       form_link: "",
       sheet_link: "",
       templet_id: "",
       isFormSubmitted: false,
       issheetlinkProvided: false,
       templetIdProvided: false,
+      //
       all_done: false,
+      //
+      //
+      form_display: true
+      //
     };
   }
 
@@ -34,8 +49,21 @@ class AppContextProvider extends React.Component {
       .catch((error) => alert(error));
   };
 
+  selectMode = (e) => {
+    this.setState({
+      state_type: e.target.name,
+    });
+  };
+
+  // for new form component
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
   handleFormSubmit = (e) => {
-    let x = this.state.form_link;
+    let x = this.state.form_link
     x = x.split("/viewform");
     console.log(x[0]);
 
@@ -46,7 +74,7 @@ class AppContextProvider extends React.Component {
     console.log(this.state.form_link);
   };
 
-  handleSheetSubmit = () => {
+  handleSheetSubmit = (e) => {
     this.setState({
       sheet_link: this.state.sheet_link,
       issheetlinkProvided: true,
@@ -54,7 +82,7 @@ class AppContextProvider extends React.Component {
     console.log(this.state.sheet_link);
   };
 
-  handleTemplateSubmit = () => {
+  handleTemplateSubmit = (e) => {
     this.setState({
       templet_id: this.state.templet_id,
       templetIdProvided: true,
@@ -62,7 +90,7 @@ class AppContextProvider extends React.Component {
     console.log(this.state.templet_id);
   };
 
-  createData = async () => {
+  createData = () => {
     if (
       this.state.isFormSubmitted &&
       this.state.issheetlinkProvided &&
@@ -86,6 +114,16 @@ class AppContextProvider extends React.Component {
     });
   };
 
+  // end
+
+  // for document creation
+
+  gotoDocumnetCreation = () => {
+    this.setState({
+        form_display:false
+    })
+}
+
   render() {
     let {
       isAuth,
@@ -93,6 +131,11 @@ class AppContextProvider extends React.Component {
       issheetlinkProvided,
       templetIdProvided,
       all_done,
+      form_link,
+      sheet_link,
+      templet_id,
+      state_type,
+      form_display,
     } = this.state;
     let {
       authUser,
@@ -100,6 +143,11 @@ class AppContextProvider extends React.Component {
       handleSheetSubmit,
       handleTemplateSubmit,
       createData,
+      resetData,
+      handleChange,
+      selectMode,
+      gotoDocumnetCreation,
+      
     } = this;
     return (
       <AppContext.Provider
@@ -109,11 +157,21 @@ class AppContextProvider extends React.Component {
           issheetlinkProvided,
           templetIdProvided,
           all_done,
+          form_link,
+          sheet_link,
+          templet_id,
+          state_type,
+          form_display,
           authUser,
           handleFormSubmit,
           handleSheetSubmit,
           handleTemplateSubmit,
           createData,
+          handleChange,
+          selectMode,
+          gotoDocumnetCreation,
+          resetData,
+          
         }}
       >
         {this.props.children}

@@ -9,34 +9,29 @@ class DashBoard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      state_type: null,
     };
   }
 
-  userSelect = (e) => {
-    this.setState({
-      state_type: e.target.name,
-    });
-  };
+  
 
   render() {
     return (
       <div className="container">
-        {this.state.state_type == null ? (
+        {this.context.state_type === null ? (
           <div>
             <button
               name="newForm"
-              onClick={this.userSelect}
+              onClick={this.context.selectMode}
               className="btn btn-warning"
             >Start With New Form</button>
             <hr />
             <button
               name="existingForm"
-              onClick={this.userSelect}
+              onClick={this.context.userSelect}
               className="btn btn-warning"
             >Generate Documents with Existing Data</button>
           </div>
-        ) : this.state.state_type == "newForm" ? (
+        ) : this.context.state_type === "newForm" ? (
           <NewForm />
         ) : (
           <ExistingData />
@@ -47,3 +42,5 @@ class DashBoard extends React.Component {
 }
 
 export default DashBoard;
+
+DashBoard.contextType = AppContext;

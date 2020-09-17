@@ -6,10 +6,8 @@ class NewForm extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            form_link : "",
             sheet_link : "",
             templet_id : "",
-            isFormSubmitted : false,
             issheetlinkProvided : false,
             templetIdProvided: false,
             all_done : false,
@@ -21,17 +19,6 @@ class NewForm extends React.Component {
            [e.target.name]: e.target.value}) 
     }
 
-    handleFormSubmit = (e) => {
-        let x = this.state.form_link
-        x = x.split("/viewform")
-        console.log(x[0])
-
-        this.setState({
-            form_link: x[0] , 
-            isFormSubmitted : true
-        })
-        console.log(this.state.form_link)
-    }
 
     handleSheetSubmit = () => {
         this.setState({
@@ -78,20 +65,13 @@ class NewForm extends React.Component {
 
             {this.state.all_done ? <Form form_link={this.state.form_link} sheet_link={this.state.sheet_link} templet_id={this.state.templet_id}/> :
             <>
-                {this.state.isFormSubmitted ? <><p>Step 1 completed</p><p>Form Created</p></> : <> <p>CREATE A NEW GOOGLE FORM</p>
-                <a href={"https://docs.google.com/forms/u/0/"} className="btn btn-primary">GO TO GOOGLE FORM</a>
-                <br/>
-                <p>PLEASE GIVE THE LINK OF GOOGLE FORMS Created</p>
-                <input name="form_link" value={this.state.form_link} type="text" className="form-control" placeholder="form link" onChange={this.handleChange}></input>
-                <button  className="btn btn-primary" onClick={this.handleFormSubmit}>SUBMIT</button> </> }
-                <br/>
 
                 {this.state.issheetlinkProvided ? <><p>Step 2 completed</p><p>Sheet link Submmited</p></> : <><p>PLEASE PROVIDE THE SHAREABLE LINK OF SPREADSHEET</p>
                 <input name="sheet_link" value={this.state.sheet_link} type="text" className="form-control" placeholder="Sheet Link" onChange={this.handleChange}></input>
                 <br/>
                 <button  className="btn btn-primary" onClick={this.handleSheetSubmit}>SUBMIT</button><br/></>}
 
-                {this.state.templetIdProvided ? <><p>All Set Go ahead and add data to Form</p> 
+                {this.state.templetIdProvided ? <>
                 <button  className="btn btn-sucess" onClick={this.createData}>Go TO From</button> <br/> 
                 </>
                 : <><p>GO TO RevvSales AND CREATE TEMPLATE</p>

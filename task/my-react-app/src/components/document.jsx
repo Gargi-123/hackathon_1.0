@@ -1,15 +1,12 @@
 import React from "react"
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import axios from "axios"
+import { AppContext } from "../context/ContextProvider";
 
 class Document extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            sheet_link : "",
-            templet_id : "",
-            url: "",
-
         }
     }
 
@@ -25,11 +22,9 @@ class Document extends React.Component {
     render(){
         return (
             <div className="container-fulid">
-            <p>Paste your org_url</p>
-            <input placeholder="Paste url" onChange={this.handleChange} value={this.url}/>
-            <button onClick={this.creationDocumnet}>Generate Documents</button>
+            <button className="btn btn-primary" onClick={this.creationDocumnet}>Generate Documents</button>
             <a href="revvsales.com/assets" className="btn btn-primary">View Documents</a>
-            <button onClick={this.sendMail}>Send Mail to Each</button>
+            <button className="btn btn-primary" onClick={this.sendMail}>Send Mail to Each</button>
             </div>
         )
     }

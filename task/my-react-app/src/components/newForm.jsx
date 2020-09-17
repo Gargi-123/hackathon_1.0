@@ -2,37 +2,25 @@ import React from "react";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Form from "./form";
 import { AppContext } from "../context/ContextProvider";
-class NewForm extends React.Component {
+export default class NewForm extends React.Component {
+    
   constructor(props) {
     super(props);
     this.state = {
-      form_link: this.context.form_link,
-      sheet_link: this.context.sheet_link,
-      templet_id: this.context.templet_id,
-      isFormSubmitted: this.context.isFormSubmitted,
-      isSheetlinkProvided: this.context.issheetlinkProvided,
-      templetIdProvided: this.context.templetIdProvided,
-      all_done: this.context.all_done,
+      
     };
   }
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
+  
 
   render() {
-    return this.state.state_type == null ? (
-      <></>
-    ) : (
+    return (
       <div className="container">
-        {this.state.all_done ? (
-          <Form
-          />
+        {this.context.all_done ? (
+          <Form/>
         ) : (
           <>
-            {this.state.isFormSubmitted ? (
+            {this.context.isFormSubmitted ? (
               <>
                 <p>Step 1 completed</p>
                 <p>Form Created</p>
@@ -51,15 +39,15 @@ class NewForm extends React.Component {
                 <p>PLEASE GIVE THE LINK OF GOOGLE FORMS Created</p>
                 <input
                   name="form_link"
-                  value={this.state.form_link}
+                  value={this.context.form_link}
                   type="text"
                   className="form-control"
                   placeholder="form link"
-                  onChange={this.handleChange}
+                  onChange={this.context.handleChange}
                 ></input>
                 <button
                   className="btn btn-primary"
-                  onClick={this.handleFormSubmit}
+                  onClick={this.context.handleFormSubmit}
                 >
                   SUBMIT
                 </button>{" "}
@@ -67,7 +55,7 @@ class NewForm extends React.Component {
             )}
             <br />
 
-            {this.state.issheetlinkProvided ? (
+            {this.context.issheetlinkProvided ? (
               <>
                 <p>Step 2 completed</p>
                 <p>Sheet link Submmited</p>
@@ -77,16 +65,16 @@ class NewForm extends React.Component {
                 <p>PLEASE PROVIDE THE SHAREABLE LINK OF SPREADSHEET</p>
                 <input
                   name="sheet_link"
-                  value={this.state.sheet_link}
+                  value={this.context.sheet_link}
                   type="text"
                   className="form-control"
                   placeholder="Sheet Link"
-                  onChange={this.handleChange}
+                  onChange={this.context.handleChange}
                 ></input>
                 <br />
                 <button
                   className="btn btn-primary"
-                  onClick={this.handleSheetSubmit}
+                  onClick={this.context.handleSheetSubmit}
                 >
                   SUBMIT
                 </button>
@@ -94,10 +82,10 @@ class NewForm extends React.Component {
               </>
             )}
 
-            {this.state.templetIdProvided ? (
+            {this.context.templetIdProvided ? (
               <>
                 <p>All Set Go ahead and add data to Form</p>
-                <button className="btn btn-sucess" onClick={this.createData}>
+                <button className="btn btn-success" onClick={this.context.createData}>
                   Go TO From
                 </button>{" "}
                 <br />
@@ -114,31 +102,30 @@ class NewForm extends React.Component {
 
                 <input
                   name="templet_id"
-                  value={this.state.templet_id}
+                  value={this.context.templet_id}
                   type="text"
                   className="form-control"
                   placeholder="Templet Id"
-                  onChange={this.handleChange}
+                  onChange={this.context.handleChange}
                 ></input>
                 <br />
                 <button
                   className="btn btn-primary"
-                  onClick={this.handleTemplateSubmit}
+                  onClick={this.context.handleTemplateSubmit}
                 >
                   submit
                 </button>
               </>
             )}
+            <button className="btn btn-danger" onClick={this.context.resetData}>
+          Reset
+        </button>
           </>
         )}
         <br />
         <br />
-        <button className="btn btn-danger" onClick={this.resetData}>
-          Reset
-        </button>
       </div>
     );
   }
 }
-
-export default NewForm;
+NewForm.contextType = AppContext;
