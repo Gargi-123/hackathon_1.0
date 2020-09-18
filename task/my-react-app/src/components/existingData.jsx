@@ -19,12 +19,12 @@ class ExistingData extends React.Component {
               <>
                 {this.context.issheetlinkProvided ? (
                   <>
-                    <p>Step 1 completed</p>
-                    <p>Sheet link Submmited</p>
+                    <p class="font-weight-bold">Step 1 completed</p>
+                    <p class="font-weight-bold">Sheet link Submmited</p>
                   </>
                 ) : (
                   <>
-                    <p>PLEASE PROVIDE THE SHAREABLE LINK OF SPREADSHEET</p>
+                    <p class="font-weight-bold">PLEASE PROVIDE THE SHAREABLE LINK OF SPREADSHEET</p>
                     <input
                       name="sheet_link"
                       value={this.context.sheet_link}
@@ -35,7 +35,7 @@ class ExistingData extends React.Component {
                     ></input>
                     <br />
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-primary btn-lg btn-block"
                       onClick={this.context.handleSheetSubmit}
                     >
                       SUBMIT
@@ -46,22 +46,22 @@ class ExistingData extends React.Component {
     
                 {this.context.templetIdProvided ? (
                   <>
-                    <p>All Set Go ahead and add data to Form</p>
-                    <button className="btn btn-success" onClick={this.context.createData}>
+                    <p class="font-weight-bold">All Set Go ahead and add data to Form</p>
+                    <button className="btn btn-success btn-lg btn-block" onClick={this.context.createData}>
                       Go TO From
                     </button>{" "}
                     <br />
                   </>
                 ) : (
                   <>
-                    <p>GO TO RevvSales AND CREATE TEMPLATE</p>
+                    <p class="font-weight-bold">GO TO RevvSales AND CREATE TEMPLATE</p>
                     <a
-                      className="btn btn-warning"
+                      className="btn btn-warning btn-lg btn-block"
                       href="https://auth.revvsales.com/signin"
                     >
                       Link to Revv Sales
                     </a>
-    
+                   <br/>
                     <input
                       name="templet_id"
                       value={this.context.templet_id}
@@ -72,14 +72,14 @@ class ExistingData extends React.Component {
                     ></input>
                     <br />
                     <button
-                      className="btn btn-primary"
+                      className="btn btn-primary btn-lg btn-block"
                       onClick={this.context.handleTemplateSubmit}
                     >
                       submit
                     </button>
                   </>
                 )}
-                <button className="btn btn-danger" onClick={this.context.resetData}>
+                <button className="btn btn-danger btn-lg btn-block" onClick={this.context.resetData}>
               Reset
             </button>
               </>

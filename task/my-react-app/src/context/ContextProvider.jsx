@@ -6,7 +6,7 @@ class AppContextProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuth: false,
+      isAuth: true,
       // revv account 
       access_token: "",
       subdomain:"",
