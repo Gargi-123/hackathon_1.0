@@ -16,19 +16,19 @@ class DashBoard extends React.Component {
 
   render() {
     return (
-      <div className="container col-6 mt-5 p-5">
+      <div className="container">
         {this.context.state_type === null ? (
           <div>
             <button
               name="newForm"
               onClick={this.context.selectMode}
-              className="btn btn-warning btn-lg btn-block"
+              className="btn btn-warning"
             >Start With New Form</button>
-            <hr/><p style={{textAlign:"center"}}>-----OR-----</p><hr/>
+            <hr />
             <button
               name="existingForm"
               onClick={this.context.selectMode}
-              className="btn btn-warning btn-lg btn-block"
+              className="btn btn-warning"
             >Generate Documents with Existing Data</button>
           </div>
         ) : this.context.state_type === "newForm" ? (

@@ -1,0 +1,38 @@
+[
+    {
+      "Timestamp": "16/09/2020 21:48:19",
+      "Name": "Gargi Das",
+      "Email": "dasgargi100@gmail.com",
+      "Address": "Kolkata",
+      "Phone number": 7001278862,
+      "Comments": "Good",
+      "Email address": ""
+    },
+    {
+      "Timestamp": "17/09/2020 01:43:18",
+      "Name": "Ritesh Ranjan",
+      "Email": "riteshranjan1997@gmail.com",
+      "Address": "Pune",
+      "Phone number": 7854123659,
+      "Comments": "Bad",
+      "Email address": ""
+    },
+    {
+      "Timestamp": "17/09/2020 00:38:28",
+      "Name": "Ram",
+      "Email": "dasgargi100@gmail.com",
+      "Address": "Bangalore",
+      "Phone number": 7647575498,
+      "Comments": "Very Good",
+      "Email address": ""
+    },
+    {
+      "Timestamp": "17/09/2020 02:04:58",
+      "Name": "Prashant",
+      "Email": "riteshranjan1997@gmail.com",
+      "Address": "Delhi",
+      "Phone number": 8789855570,
+      "Comments": "Poor",
+      "Email address": ""
+    }
+  ]

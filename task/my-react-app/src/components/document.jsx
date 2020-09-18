@@ -1,11 +1,7 @@
 import React from "react"
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
-import axios from "axios"
 import { AppContext } from "../context/ContextProvider";
-
-
-
-
+import Data from "./data.json"
 
 class Document extends React.Component {
     constructor(props) {
@@ -15,9 +11,7 @@ class Document extends React.Component {
     }
 
 
-    CreationDocumnet = () => {
-        alert("Are you sure you want to do it")
-    }
+    
 
     sendMail = () => {
         alert("mailsent")
@@ -25,10 +19,12 @@ class Document extends React.Component {
 
     render(){
         return (
-            <div className="container-fulid ">
-            <button className="btn btn-primary btn-lg btn-block m-3" onClick={this.CreationDocumnet}>Generate Documents</button>
-            <a href="revvsales.com/assets" className="btn btn-primary btn-lg btn-block m-3">View Documents</a>
-            {/* <button className="btn btn-primary btn-lg btn-block" onClick={this.sendMail}>Send Mail to Each</button> */}
+            <div className="container-fulid">
+            <button className="btn btn-primary" onClick={() => this.context.Documnet_creation(Data)}>Generate Documents</button>
+            <br/>
+            <a href="revvsales.com/assets" className="btn btn-primary">View Documents</a>
+            <br/>
+            <button className="btn btn-primary" onClick={this.sendMail}>Send Mail to Each</button>
             </div>
         )
     }
@@ -36,3 +32,5 @@ class Document extends React.Component {
 }
 
 export default Document
+
+Document.contextType = AppContext;
