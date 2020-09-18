@@ -6,7 +6,7 @@ class AppContextProvider extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isAuth: false,
+      isAuth: true,
       // revv account 
       access_token: "",
       subdomain:"",
@@ -30,9 +30,7 @@ class AppContextProvider extends React.Component {
       //
 
       data_json: [],
-      data_csv:[],
-
-      created_doc_data: []
+      data_csv:[]
     };
   }
 
@@ -49,18 +47,15 @@ class AppContextProvider extends React.Component {
       "org_domain": org
       }
     }).then((res) => {
-      console.log(res.data.User)
+      console.log(res.data)
         this.setState({
           isAuth: true,
-          access_token: res.data.User.access_token,
-          subdomain:res.data.User.subdomain,
-          refresh_token:res.data.User.refresh_token
+          access_token: res.data.access_token,
+          subdomain:res.data.subdomain,
+          refresh_token:res.data.refresh_token
         });
-        console.log(this.state.access_token)
       })
       .catch((error) => alert(error));
-
-      this.automate(email,password)
   };
 
   selectMode = (e) => {
@@ -138,45 +133,18 @@ class AppContextProvider extends React.Component {
     })
 }
 
-Documnet_creation = async (data) => {
-
-  for(let i = 0 ; i < data.length; i++){
-
-    await axios({
-      method: 'post',     
-      url: "https://api.revvsales.com/api/docs",
-       headers: { 'AccessToken': this.state.access_token,
-          'Content-Type' : 'application/json' }, 
-      data: {
-      "template_id" : this.state.templet_id
-      }
-    }).then((res) => {
-      console.log(res.data)
-      })
-      .catch((error) => alert(error));
-  
-      // await axios({
-      //   method: "post",
-      //   url: "http://localhost:5000/update_doc",
-      //   data: { ...data }
-      // })
-
-  }
-
-  
-}
-
 
 //
 automate = async(email,pass) => {
   const response = await axios({
     method: "post",
-    url: "http://localhost:5000/login",
+    url: "http://localhost:5000/screenshot",
     data: {
       "email": email,
       "password": pass,
     },
   })
+  console.log(response)
 }
 
 
@@ -205,7 +173,6 @@ automate = async(email,pass) => {
       selectMode,
       gotoDocumnetCreation,
       automate,
-      Documnet_creation,
 
       
     } = this;
@@ -232,7 +199,6 @@ automate = async(email,pass) => {
           gotoDocumnetCreation,
           resetData,
           automate,
-          Documnet_creation,
           
         }}
       >

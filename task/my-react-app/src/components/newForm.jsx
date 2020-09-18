@@ -22,21 +22,21 @@ export default class NewForm extends React.Component {
           <>
             {this.context.isFormSubmitted ? (
               <>
-                <p>Step 1 completed</p>
-                <p>Form Created</p>
+                <p class="font-weight-bold">Step 1 completed</p>
+                <p class="font-weight-bold">Form Created</p>
               </>
             ) : (
               <>
                 {" "}
-                <p>CREATE A NEW GOOGLE FORM</p>
+                <p class="font-weight-bold" style={{}}>CREATE A NEW GOOGLE FORM</p>
                 <a
                   href={"https://docs.google.com/forms/u/0/"}
-                  className="btn btn-primary"
+                  className="btn btn-primary btn-lg btn-block"
                 >
                   GO TO GOOGLE FORM
                 </a>
                 <br />
-                <p>PLEASE GIVE THE LINK OF GOOGLE FORMS Created</p>
+                <p class="font-weight-bold">PLEASE GIVE THE LINK OF GOOGLE FORMS Created</p>
                 <input
                   name="form_link"
                   value={this.context.form_link}
@@ -45,8 +45,9 @@ export default class NewForm extends React.Component {
                   placeholder="form link"
                   onChange={this.context.handleChange}
                 ></input>
+                <br/>
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-primary btn-lg btn-block"
                   onClick={this.context.handleFormSubmit}
                 >
                   SUBMIT
@@ -57,12 +58,12 @@ export default class NewForm extends React.Component {
 
             {this.context.issheetlinkProvided ? (
               <>
-                <p>Step 2 completed</p>
-                <p>Sheet link Submmited</p>
+                <p class="font-weight-bold">Step 2 completed</p>
+                <p class="font-weight-bold">Sheet link Submmited</p>
               </>
             ) : (
               <>
-                <p>PLEASE PROVIDE THE SHAREABLE LINK OF SPREADSHEET</p>
+                <p class="font-weight-bold">PLEASE PROVIDE THE SHAREABLE LINK OF SPREADSHEET</p>
                 <input
                   name="sheet_link"
                   value={this.context.sheet_link}
@@ -73,7 +74,7 @@ export default class NewForm extends React.Component {
                 ></input>
                 <br />
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-primary btn-lg btn-block"
                   onClick={this.context.handleSheetSubmit}
                 >
                   SUBMIT
@@ -84,22 +85,22 @@ export default class NewForm extends React.Component {
 
             {this.context.templetIdProvided ? (
               <>
-                <p>All Set Go ahead and add data to Form</p>
-                <button className="btn btn-success" onClick={this.context.createData}>
+                <p class="font-weight-bold">All Set Go ahead and add data to Form</p>
+                <button className="btn btn-success btn-lg btn-block" onClick={this.context.createData}>
                   Go TO From
                 </button>{" "}
                 <br />
               </>
             ) : (
               <>
-                <p>GO TO RevvSales AND CREATE TEMPLATE</p>
+                <p class="font-weight-bold">GO TO RevvSales AND CREATE TEMPLATE</p>
                 <a
-                  className="btn btn-warning"
+                  className="btn btn-warning btn-lg btn-block"
                   href="https://auth.revvsales.com/signin"
                 >
                   Link to Revv Sales
                 </a>
-
+                 <br/>
                 <input
                   name="templet_id"
                   value={this.context.templet_id}
@@ -110,14 +111,15 @@ export default class NewForm extends React.Component {
                 ></input>
                 <br />
                 <button
-                  className="btn btn-primary"
+                  className="btn btn-primary btn-lg btn-block"
                   onClick={this.context.handleTemplateSubmit}
                 >
                   submit
                 </button>
+        
               </>
             )}
-            <button className="btn btn-danger" onClick={this.context.resetData}>
+            <button className="btn btn-danger btn-lg btn-block" onClick={this.context.resetData}>
           Reset
         </button>
           </>
